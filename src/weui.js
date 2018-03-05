@@ -28,7 +28,6 @@ import uploader from './uploader/uploader';
 import { picker, datePicker } from './picker/picker';
 import gallery from './gallery/gallery';
 import slider from './slider/slider';
-import $ from 'jquery'
 
 export default {
     dialog,
@@ -49,9 +48,8 @@ export default {
 };
 
 //单独添加的侧滑栏组建
-(function($) {
+(function() {
     var $win = $(window);
-    var $doc = $(document);
     var scrollPos;
     var OffCanvas = function(element, options) {
         this.$element = $(element);
@@ -60,9 +58,7 @@ export default {
         // this.bindEvents();
     };
     var UI = $.AMUI || {};
-    var $win = $(window);
     var doc = window.document;
-    var $html = $('html');
 
     UI.support = {};
 
@@ -90,7 +86,7 @@ export default {
         effect: 'overlay' // {push|overlay}, push is too expensive
     };
 
-    OffCanvas.prototype.open = function(relatedElement) {
+    OffCanvas.prototype.open = function() {
         var _this = this;
         var $element = this.$element;
 
@@ -169,7 +165,7 @@ export default {
         return this;
     };
 
-    OffCanvas.prototype.close = function(relatedElement) {
+    OffCanvas.prototype.close = function() {
         var _this = this;
         var $html = $('html');
         var $body = $('body');
@@ -236,4 +232,4 @@ export default {
     }
 
     $.fn.offCanvas = Plugin;
-}(jQuery));
+})();
