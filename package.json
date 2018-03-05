@@ -24,6 +24,7 @@
   "dependencies": {
     "balajs": "^0.1.9",
     "element-closest": "^2.0.1",
+    "jquery": "^3.3.1",
     "object-assign": "^4.1.0"
   },
   "devDependencies": {

@@ -14,8 +14,7 @@ module.exports = {
         filename: '[name].js'
     },
     module: {
-        loaders: [
-            {
+        loaders: [{
                 test: /\.js$/,
                 exclude: /node_modules/,
                 loader: 'babel'
@@ -46,6 +45,6 @@ module.exports = {
         new HtmlWebpackPlugin({
             template: path.join(__dirname, '../example/index.html')
         }),
-        new OpenBrowserPlugin({url: 'http://localhost:8001'})
+        new OpenBrowserPlugin({ url: 'http://localhost:8001' })
     ]
 };
