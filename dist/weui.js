@@ -1,4 +1,19 @@
-/******/ (function(modules) { // webpackBootstrap
+/*!
+ * weui.js v1.1.3 (https://weui.io)
+ * Copyright 2018, wechat ui team
+ * MIT license
+ */
+(function webpackUniversalModuleDefinition(root, factory) {
+	if(typeof exports === 'object' && typeof module === 'object')
+		module.exports = factory();
+	else if(typeof define === 'function' && define.amd)
+		define([], factory);
+	else if(typeof exports === 'object')
+		exports["weui"] = factory();
+	else
+		root["weui"] = factory();
+})(this, function() {
+return /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
 /******/ 	var installedModules = {};
 
@@ -46,1413 +61,65 @@
 
 	'use strict';
 
-	var _fastclick = __webpack_require__(1);
-
-	var _fastclick2 = _interopRequireDefault(_fastclick);
-
-	var _weui = __webpack_require__(2);
-
-	var _weui2 = _interopRequireDefault(_weui);
-
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-	// import 'weui';
-	_fastclick2.default.attach(document.body);
-
-	/* dialog */
-	document.querySelector('#alertBtn').addEventListener('click', function () {
-	    _weui2.default.alert('自定义标题的alert', function () {
-	        console.log('ok');
-	    }, {
-	        title: '自定义标题'
-	    });
-	});
-
-	/* confirm */
-	document.querySelector('#confirmBtn').addEventListener('click', function () {
-	    _weui2.default.confirm('自定义标题的confirm', function () {
-	        console.log('yes');
-	    }, function () {
-	        console.log('no');
-	    }, {
-	        title: '自定义标题'
-	    });
-	});
-
-	/* toast */
-	document.querySelector('#toastBtn').addEventListener('click', function () {
-	    _weui2.default.toast('操作成功', {
-	        duration: 3000,
-	        className: "bears"
-	    });
-	});
-
-	/* loading */
-	document.querySelector('#loadingBtn').addEventListener('click', function () {
-	    var loading = _weui2.default.loading('loading');
-	    setTimeout(function () {
-	        loading.hide();
-	    }, 3000);
-	});
-
-	/* actionSheet */
-	document.querySelector('#actionSheetBtn').addEventListener('click', function () {
-	    _weui2.default.actionSheet([{
-	        label: '拍照',
-	        onClick: function onClick() {
-	            console.log('拍照');
-	        }
-	    }, {
-	        label: '从相册选择',
-	        onClick: function onClick() {
-	            console.log('从相册选择');
-	        }
-	    }, {
-	        label: '其他',
-	        onClick: function onClick() {
-	            console.log('其他');
-	        }
-	    }], [{
-	        label: '取消',
-	        onClick: function onClick() {
-	            console.log('取消');
-	        }
-	    }], {
-	        className: "custom-classname",
-	        onClose: function onClose() {
-	            console.log('关闭');
-	        }
-	    });
-	});
-
-	/* topTips */
-	document.querySelector('#topTipsBtn').addEventListener('click', function () {
-	    _weui2.default.topTips('请填写正确的字段', {
-	        duration: 3000,
-	        className: "custom-classname",
-	        callback: function callback() {
-	            console.log('close');
-	        }
-	    });
-	});
-
-	/* picker */
-	// 普通选择器
-	document.querySelector('#pickerBtn').addEventListener('click', function () {
-	    _weui2.default.picker([{
-	        label: '飞机票',
-	        value: 0
-	    }, {
-	        label: '火车票(disabled)',
-	        disabled: true,
-	        value: 1
-	    }, {
-	        label: '的士票(disabled)',
-	        disabled: true,
-	        value: 2
-	    }, {
-	        label: '住宿费',
-	        value: 3
-	    }, {
-	        label: '礼品费',
-	        value: 4
-	    }, {
-	        label: '活动费',
-	        value: 5
-	    }, {
-	        label: '通讯费',
-	        value: 6
-	    }, {
-	        label: '补助',
-	        value: 7
-	    }, {
-	        label: '通讯费',
-	        value: 8
-	    }, {
-	        label: '其他',
-	        value: 9
-	    }], {
-	        defaultValue: [8],
-	        className: 'custom-classname',
-	        onChange: function onChange(result) {
-	            //console.log(item, index);
-	            console.log(result);
-	        },
-	        onConfirm: function onConfirm(result) {
-	            console.log(result);
-	        },
-	        id: 'picker'
-	    });
-	});
-
-	// 时间选择器
-	document.querySelector('#datePickerBtn').addEventListener('click', function () {
-	    _weui2.default.datePicker({
-	        start: '2016-12-29',
-	        end: '2030-12-29',
-	        /**
-	         * https://zh.wikipedia.org/wiki/Cron
-	         * cron 表达式后三位
-	         * 示例：
-	         *  * * *                每天
-	         *  5 * *                每个月的5日
-	         *  1-10 * *             每个月的前10日
-	         *  1,5,10 * *           每个月的1号、5号、10号
-	         *  *\/2 * *             每个月的 1、3、5、7...日，注意写的时候斜杠“/”前面没有反斜杠“\”，这是因为是注释所以需要转义
-	         *  * 2 0                2月的每个周日
-	         *  * * 0,6              每个周末
-	         *  * * 3                每周三
-	         */
-	        cron: '* */2 0',
-	        defaultValue: [2017, 7, 9],
-	        onChange: function onChange(result) {
-	            console.log(result);
-	        },
-	        onConfirm: function onConfirm(result) {
-	            console.log(result);
-	        },
-	        id: 'datePicker'
-	    });
-	});
-
-	// 多列选择器
-	document.querySelector('#multiPickerBtn').addEventListener('click', function () {
-	    _weui2.default.picker([{
-	        label: '1',
-	        value: '1'
-	    }, {
-	        label: '2',
-	        value: '2'
-	    }, {
-	        label: '3',
-	        value: '3'
-	    }], [{
-	        label: 'A',
-	        value: 'A'
-	    }, {
-	        label: 'B',
-	        value: 'B'
-	    }, {
-	        label: 'C',
-	        value: 'C'
-	    }], {
-	        defaultValue: ['3', 'A'],
-	        onChange: function onChange(result) {
-	            console.log(result);
-	        },
-	        onConfirm: function onConfirm(result) {
-	            console.log(result);
-	        },
-	        id: 'multiPickerBtn',
-	        onClose: function onClose() {
-	            console.log('onClose');
-	        }
-	    });
-	});
-
-	// 级联选择器
-	document.querySelector('#cascadePickerBtn').addEventListener('click', function () {
-	    _weui2.default.picker([{
-	        label: '广东',
-	        value: 0,
-	        children: [{
-	            label: '广州',
-	            value: 0,
-	            children: [{
-	                label: '海珠',
-	                value: 0
-	            }, {
-	                label: '番禺',
-	                value: 1
-	            }]
-	        }, {
-	            label: '佛山',
-	            value: 1,
-	            children: [{
-	                label: '禅城',
-	                value: 0
-	            }, {
-	                label: '南海',
-	                value: 1
-	            }]
-	        }]
-	    }, {
-	        label: '广西',
-	        value: 1,
-	        children: [{
-	            label: '南宁',
-	            value: 0,
-	            children: [{
-	                label: '青秀',
-	                value: 0
-	            }, {
-	                label: '兴宁',
-	                value: 1
-	            }]
-	        }, {
-	            label: '桂林',
-	            value: 1,
-	            children: [{
-	                label: '象山',
-	                value: 0
-	            }, {
-	                label: '秀峰',
-	                value: 1
-	            }]
-	        }]
-	    }], {
-	        depth: 3,
-	        defaultValue: [0, 1, 1],
-	        onChange: function onChange(result) {
-	            console.log(result);
-	        },
-	        onConfirm: function onConfirm(result) {
-	            console.log(result);
-	        },
-	        id: 'cascadePicker'
-	    });
-	});
-
-	/* searchbar */
-	_weui2.default.searchBar('#searchBar');
-
-	/* slider 因为需要获取长度，所以必须要在slider显示的时候才调用weui.slider*/
-	var isSetSlider = false;
-	function setSlider() {
-	    if (isSetSlider) return;
-	    isSetSlider = true;
-
-	    // 普通slider
-	    var sliderValue = document.getElementById("sliderValue");
-	    _weui2.default.slider('#slider', {
-	        defaultValue: 50,
-	        onChange: function onChange(percent) {
-	            sliderValue.innerHTML = Math.round(percent);
-	            console.log(percent);
-	        }
-	    });
-
-	    // 带step的slider
-	    var sliderStepValue = document.getElementById("sliderStepValue");
-	    _weui2.default.slider('#sliderStep', {
-	        step: 10,
-	        defaultValue: 40,
-	        onChange: function onChange(percent) {
-	            sliderStepValue.innerHTML = Math.round(percent);
-	            console.log(percent);
-	        }
-	    });
-
-	    // 分块的slider
-	    var sliderBlockValue = document.getElementById("sliderBlockValue");
-	    _weui2.default.slider('#sliderBlock', {
-	        step: 100 / 3,
-	        defaultValue: 33.333,
-	        onChange: function onChange(percent) {
-	            sliderBlockValue.innerHTML = Math.round(percent);
-	            console.log(percent);
-	        }
-	    });
-	}
-
-	/* tab */
-	_weui2.default.tab('#tab', {
-	    defaultIndex: 0,
-	    onChange: function onChange(index) {
-	        console.log(index);
-
-	        if (index == 3) {
-	            setSlider(); // 设置slider
-	        }
-	    }
-	});
-
-	/* form */
-	// 约定正则
-	var regexp = {
-	    regexp: {
-	        IDNUM: /(?:^\d{15}$)|(?:^\d{18}$)|^\d{17}[\dXx]$/,
-	        VCODE: /^.{4}$/
-	    }
-	};
-
-	// 失去焦点时检测
-	_weui2.default.form.checkIfBlur('#form', regexp);
-
-	// 表单提交
-	document.querySelector('#formSubmitBtn').addEventListener('click', function () {
-	    _weui2.default.form.validate('#form', function (error) {
-	        console.log(error);
-	        if (!error) {
-	            var loading = _weui2.default.loading('提交中...');
-	            setTimeout(function () {
-	                loading.hide();
-	                _weui2.default.toast('提交成功', 3000);
-	            }, 1500);
-	        }
-	    }, regexp);
-	});
-
-	/* 图片自动上传 */
-	var uploadCount = 0,
-	    uploadList = [];
-	var uploadCountDom = document.getElementById("uploadCount");
-	_weui2.default.uploader('#uploader', {
-	    url: 'http://' + location.hostname + ':8002/upload',
-	    auto: true,
-	    type: 'file',
-	    fileVal: 'fileVal',
-	    compress: {
-	        width: 1600,
-	        height: 1600,
-	        quality: .8
-	    },
-	    onBeforeQueued: function onBeforeQueued(files) {
-	        if (["image/jpg", "image/jpeg", "image/png", "image/gif"].indexOf(this.type) < 0) {
-	            _weui2.default.alert('请上传图片');
-	            return false;
-	        }
-	        if (this.size > 10 * 1024 * 1024) {
-	            _weui2.default.alert('请上传不超过10M的图片');
-	            return false;
-	        }
-	        if (files.length > 5) {
-	            // 防止一下子选中过多文件
-	            _weui2.default.alert('最多只能上传5张图片，请重新选择');
-	            return false;
-	        }
-	        if (uploadCount + 1 > 5) {
-	            _weui2.default.alert('最多只能上传5张图片');
-	            return false;
-	        }
-
-	        ++uploadCount;
-	        uploadCountDom.innerHTML = uploadCount;
-	    },
-	    onQueued: function onQueued() {
-	        uploadList.push(this);
-	        console.log(this);
-	    },
-	    onBeforeSend: function onBeforeSend(data, headers) {
-	        console.log(this, data, headers);
-	        // $.extend(data, { test: 1 }); // 可以扩展此对象来控制上传参数
-	        // $.extend(headers, { Origin: 'http://127.0.0.1' }); // 可以扩展此对象来控制上传头部
-
-	        // return false; // 阻止文件上传
-	    },
-	    onProgress: function onProgress(procent) {
-	        console.log(this, procent);
-	    },
-	    onSuccess: function onSuccess(ret) {
-	        console.log(this, ret);
-	    },
-	    onError: function onError(err) {
-	        console.log(this, err);
-	    }
-	});
-
-	// 缩略图预览
-	document.querySelector('#uploaderFiles').addEventListener('click', function (e) {
-	    var target = e.target;
-
-	    while (!target.classList.contains('weui-uploader__file') && target) {
-	        target = target.parentNode;
-	    }
-	    if (!target) return;
-
-	    var url = target.getAttribute('style') || '';
-	    var id = target.getAttribute('data-id');
-
-	    if (url) {
-	        url = url.match(/url\((.*?)\)/)[1].replace(/"/g, '');
-	    }
-	    var gallery = _weui2.default.gallery(url, {
-	        className: 'custom-name',
-	        onDelete: function onDelete() {
-	            _weui2.default.confirm('确定删除该图片？', function () {
-	                --uploadCount;
-	                uploadCountDom.innerHTML = uploadCount;
-
-	                for (var i = 0, len = uploadList.length; i < len; ++i) {
-	                    var file = uploadList[i];
-	                    if (file.id == id) {
-	                        file.stop();
-	                        break;
-	                    }
-	                }
-	                target.remove();
-	                gallery.hide();
-	            });
-	        }
-	    });
-	});
-
-	/* 图片手动上传 */
-	var uploadCustomFileList = [];
-
-	// 这里是简单的调用，其余api请参考文档
-	_weui2.default.uploader('#uploaderCustom', {
-	    url: 'http://localhost:8002/upload',
-	    auto: false,
-	    onQueued: function onQueued() {
-	        uploadCustomFileList.push(this);
-	    }
-	});
-
-	// 手动上传按钮
-	document.getElementById("uploaderCustomBtn").addEventListener('click', function () {
-	    uploadCustomFileList.forEach(function (file) {
-	        file.upload();
-	    });
-	});
-
-	// 缩略图预览
-	document.querySelector('#uploaderCustomFiles').addEventListener('click', function (e) {
-	    var target = e.target;
-
-	    while (!target.classList.contains('weui-uploader__file') && target) {
-	        target = target.parentNode;
-	    }
-	    if (!target) return;
-
-	    var url = target.getAttribute('style') || '';
-	    var id = target.getAttribute('data-id');
-
-	    if (url) {
-	        url = url.match(/url\((.*?)\)/)[1].replace(/"/g, '');
-	    }
-	    var gallery = _weui2.default.gallery(url, {
-	        onDelete: function onDelete() {
-	            _weui2.default.confirm('确定删除该图片？', function () {
-	                var index;
-	                for (var i = 0, len = uploadCustomFileList.length; i < len; ++i) {
-	                    var file = uploadCustomFileList[i];
-	                    if (file.id == id) {
-	                        index = i;
-	                        break;
-	                    }
-	                }
-	                if (index !== undefined) uploadCustomFileList.splice(index, 1);
-
-	                target.remove();
-	                gallery.hide();
-	            });
-	        }
-	    });
-	});
-
-/***/ }),
-/* 1 */
-/***/ (function(module, exports, __webpack_require__) {
-
-	var __WEBPACK_AMD_DEFINE_RESULT__;;(function () {
-		'use strict';
-
-		/**
-		 * @preserve FastClick: polyfill to remove click delays on browsers with touch UIs.
-		 *
-		 * @codingstandard ftlabs-jsv2
-		 * @copyright The Financial Times Limited [All Rights Reserved]
-		 * @license MIT License (see LICENSE.txt)
-		 */
-
-		/*jslint browser:true, node:true*/
-		/*global define, Event, Node*/
-
-
-		/**
-		 * Instantiate fast-clicking listeners on the specified layer.
-		 *
-		 * @constructor
-		 * @param {Element} layer The layer to listen on
-		 * @param {Object} [options={}] The options to override the defaults
-		 */
-		function FastClick(layer, options) {
-			var oldOnClick;
-
-			options = options || {};
-
-			/**
-			 * Whether a click is currently being tracked.
-			 *
-			 * @type boolean
-			 */
-			this.trackingClick = false;
-
-
-			/**
-			 * Timestamp for when click tracking started.
-			 *
-			 * @type number
-			 */
-			this.trackingClickStart = 0;
-
-
-			/**
-			 * The element being tracked for a click.
-			 *
-			 * @type EventTarget
-			 */
-			this.targetElement = null;
-
-
-			/**
-			 * X-coordinate of touch start event.
-			 *
-			 * @type number
-			 */
-			this.touchStartX = 0;
-
-
-			/**
-			 * Y-coordinate of touch start event.
-			 *
-			 * @type number
-			 */
-			this.touchStartY = 0;
-
-
-			/**
-			 * ID of the last touch, retrieved from Touch.identifier.
-			 *
-			 * @type number
-			 */
-			this.lastTouchIdentifier = 0;
-
-
-			/**
-			 * Touchmove boundary, beyond which a click will be cancelled.
-			 *
-			 * @type number
-			 */
-			this.touchBoundary = options.touchBoundary || 10;
-
-
-			/**
-			 * The FastClick layer.
-			 *
-			 * @type Element
-			 */
-			this.layer = layer;
-
-			/**
-			 * The minimum time between tap(touchstart and touchend) events
-			 *
-			 * @type number
-			 */
-			this.tapDelay = options.tapDelay || 200;
-
-			/**
-			 * The maximum time for a tap
-			 *
-			 * @type number
-			 */
-			this.tapTimeout = options.tapTimeout || 700;
-
-			if (FastClick.notNeeded(layer)) {
-				return;
-			}
-
-			// Some old versions of Android don't have Function.prototype.bind
-			function bind(method, context) {
-				return function() { return method.apply(context, arguments); };
-			}
-
-
-			var methods = ['onMouse', 'onClick', 'onTouchStart', 'onTouchMove', 'onTouchEnd', 'onTouchCancel'];
-			var context = this;
-			for (var i = 0, l = methods.length; i < l; i++) {
-				context[methods[i]] = bind(context[methods[i]], context);
-			}
-
-			// Set up event handlers as required
-			if (deviceIsAndroid) {
-				layer.addEventListener('mouseover', this.onMouse, true);
-				layer.addEventListener('mousedown', this.onMouse, true);
-				layer.addEventListener('mouseup', this.onMouse, true);
-			}
-
-			layer.addEventListener('click', this.onClick, true);
-			layer.addEventListener('touchstart', this.onTouchStart, false);
-			layer.addEventListener('touchmove', this.onTouchMove, false);
-			layer.addEventListener('touchend', this.onTouchEnd, false);
-			layer.addEventListener('touchcancel', this.onTouchCancel, false);
-
-			// Hack is required for browsers that don't support Event#stopImmediatePropagation (e.g. Android 2)
-			// which is how FastClick normally stops click events bubbling to callbacks registered on the FastClick
-			// layer when they are cancelled.
-			if (!Event.prototype.stopImmediatePropagation) {
-				layer.removeEventListener = function(type, callback, capture) {
-					var rmv = Node.prototype.removeEventListener;
-					if (type === 'click') {
-						rmv.call(layer, type, callback.hijacked || callback, capture);
-					} else {
-						rmv.call(layer, type, callback, capture);
-					}
-				};
-
-				layer.addEventListener = function(type, callback, capture) {
-					var adv = Node.prototype.addEventListener;
-					if (type === 'click') {
-						adv.call(layer, type, callback.hijacked || (callback.hijacked = function(event) {
-							if (!event.propagationStopped) {
-								callback(event);
-							}
-						}), capture);
-					} else {
-						adv.call(layer, type, callback, capture);
-					}
-				};
-			}
-
-			// If a handler is already declared in the element's onclick attribute, it will be fired before
-			// FastClick's onClick handler. Fix this by pulling out the user-defined handler function and
-			// adding it as listener.
-			if (typeof layer.onclick === 'function') {
-
-				// Android browser on at least 3.2 requires a new reference to the function in layer.onclick
-				// - the old one won't work if passed to addEventListener directly.
-				oldOnClick = layer.onclick;
-				layer.addEventListener('click', function(event) {
-					oldOnClick(event);
-				}, false);
-				layer.onclick = null;
-			}
-		}
-
-		/**
-		* Windows Phone 8.1 fakes user agent string to look like Android and iPhone.
-		*
-		* @type boolean
-		*/
-		var deviceIsWindowsPhone = navigator.userAgent.indexOf("Windows Phone") >= 0;
-
-		/**
-		 * Android requires exceptions.
-		 *
-		 * @type boolean
-		 */
-		var deviceIsAndroid = navigator.userAgent.indexOf('Android') > 0 && !deviceIsWindowsPhone;
-
-
-		/**
-		 * iOS requires exceptions.
-		 *
-		 * @type boolean
-		 */
-		var deviceIsIOS = /iP(ad|hone|od)/.test(navigator.userAgent) && !deviceIsWindowsPhone;
-
-
-		/**
-		 * iOS 4 requires an exception for select elements.
-		 *
-		 * @type boolean
-		 */
-		var deviceIsIOS4 = deviceIsIOS && (/OS 4_\d(_\d)?/).test(navigator.userAgent);
-
-
-		/**
-		 * iOS 6.0-7.* requires the target element to be manually derived
-		 *
-		 * @type boolean
-		 */
-		var deviceIsIOSWithBadTarget = deviceIsIOS && (/OS [6-7]_\d/).test(navigator.userAgent);
-
-		/**
-		 * BlackBerry requires exceptions.
-		 *
-		 * @type boolean
-		 */
-		var deviceIsBlackBerry10 = navigator.userAgent.indexOf('BB10') > 0;
-
-		/**
-		 * Determine whether a given element requires a native click.
-		 *
-		 * @param {EventTarget|Element} target Target DOM element
-		 * @returns {boolean} Returns true if the element needs a native click
-		 */
-		FastClick.prototype.needsClick = function(target) {
-			switch (target.nodeName.toLowerCase()) {
-
-			// Don't send a synthetic click to disabled inputs (issue #62)
-			case 'button':
-			case 'select':
-			case 'textarea':
-				if (target.disabled) {
-					return true;
-				}
-
-				break;
-			case 'input':
-
-				// File inputs need real clicks on iOS 6 due to a browser bug (issue #68)
-				if ((deviceIsIOS && target.type === 'file') || target.disabled) {
-					return true;
-				}
-
-				break;
-			case 'label':
-			case 'iframe': // iOS8 homescreen apps can prevent events bubbling into frames
-			case 'video':
-				return true;
-			}
-
-			return (/\bneedsclick\b/).test(target.className);
-		};
-
-
-		/**
-		 * Determine whether a given element requires a call to focus to simulate click into element.
-		 *
-		 * @param {EventTarget|Element} target Target DOM element
-		 * @returns {boolean} Returns true if the element requires a call to focus to simulate native click.
-		 */
-		FastClick.prototype.needsFocus = function(target) {
-			switch (target.nodeName.toLowerCase()) {
-			case 'textarea':
-				return true;
-			case 'select':
-				return !deviceIsAndroid;
-			case 'input':
-				switch (target.type) {
-				case 'button':
-				case 'checkbox':
-				case 'file':
-				case 'image':
-				case 'radio':
-				case 'submit':
-					return false;
-				}
-
-				// No point in attempting to focus disabled inputs
-				return !target.disabled && !target.readOnly;
-			default:
-				return (/\bneedsfocus\b/).test(target.className);
-			}
-		};
-
-
-		/**
-		 * Send a click event to the specified element.
-		 *
-		 * @param {EventTarget|Element} targetElement
-		 * @param {Event} event
-		 */
-		FastClick.prototype.sendClick = function(targetElement, event) {
-			var clickEvent, touch;
-
-			// On some Android devices activeElement needs to be blurred otherwise the synthetic click will have no effect (#24)
-			if (document.activeElement && document.activeElement !== targetElement) {
-				document.activeElement.blur();
-			}
-
-			touch = event.changedTouches[0];
-
-			// Synthesise a click event, with an extra attribute so it can be tracked
-			clickEvent = document.createEvent('MouseEvents');
-			clickEvent.initMouseEvent(this.determineEventType(targetElement), true, true, window, 1, touch.screenX, touch.screenY, touch.clientX, touch.clientY, false, false, false, false, 0, null);
-			clickEvent.forwardedTouchEvent = true;
-			targetElement.dispatchEvent(clickEvent);
-		};
-
-		FastClick.prototype.determineEventType = function(targetElement) {
-
-			//Issue #159: Android Chrome Select Box does not open with a synthetic click event
-			if (deviceIsAndroid && targetElement.tagName.toLowerCase() === 'select') {
-				return 'mousedown';
-			}
-
-			return 'click';
-		};
-
-
-		/**
-		 * @param {EventTarget|Element} targetElement
-		 */
-		FastClick.prototype.focus = function(targetElement) {
-			var length;
-
-			// Issue #160: on iOS 7, some input elements (e.g. date datetime month) throw a vague TypeError on setSelectionRange. These elements don't have an integer value for the selectionStart and selectionEnd properties, but unfortunately that can't be used for detection because accessing the properties also throws a TypeError. Just check the type instead. Filed as Apple bug #15122724.
-			if (deviceIsIOS && targetElement.setSelectionRange && targetElement.type.indexOf('date') !== 0 && targetElement.type !== 'time' && targetElement.type !== 'month') {
-				length = targetElement.value.length;
-				targetElement.setSelectionRange(length, length);
-			} else {
-				targetElement.focus();
-			}
-		};
-
-
-		/**
-		 * Check whether the given target element is a child of a scrollable layer and if so, set a flag on it.
-		 *
-		 * @param {EventTarget|Element} targetElement
-		 */
-		FastClick.prototype.updateScrollParent = function(targetElement) {
-			var scrollParent, parentElement;
-
-			scrollParent = targetElement.fastClickScrollParent;
-
-			// Attempt to discover whether the target element is contained within a scrollable layer. Re-check if the
-			// target element was moved to another parent.
-			if (!scrollParent || !scrollParent.contains(targetElement)) {
-				parentElement = targetElement;
-				do {
-					if (parentElement.scrollHeight > parentElement.offsetHeight) {
-						scrollParent = parentElement;
-						targetElement.fastClickScrollParent = parentElement;
-						break;
-					}
-
-					parentElement = parentElement.parentElement;
-				} while (parentElement);
-			}
-
-			// Always update the scroll top tracker if possible.
-			if (scrollParent) {
-				scrollParent.fastClickLastScrollTop = scrollParent.scrollTop;
-			}
-		};
-
-
-		/**
-		 * @param {EventTarget} targetElement
-		 * @returns {Element|EventTarget}
-		 */
-		FastClick.prototype.getTargetElementFromEventTarget = function(eventTarget) {
-
-			// On some older browsers (notably Safari on iOS 4.1 - see issue #56) the event target may be a text node.
-			if (eventTarget.nodeType === Node.TEXT_NODE) {
-				return eventTarget.parentNode;
-			}
-
-			return eventTarget;
-		};
-
-
-		/**
-		 * On touch start, record the position and scroll offset.
-		 *
-		 * @param {Event} event
-		 * @returns {boolean}
-		 */
-		FastClick.prototype.onTouchStart = function(event) {
-			var targetElement, touch, selection;
-
-			// Ignore multiple touches, otherwise pinch-to-zoom is prevented if both fingers are on the FastClick element (issue #111).
-			if (event.targetTouches.length > 1) {
-				return true;
-			}
-
-			targetElement = this.getTargetElementFromEventTarget(event.target);
-			touch = event.targetTouches[0];
-
-			if (deviceIsIOS) {
-
-				// Only trusted events will deselect text on iOS (issue #49)
-				selection = window.getSelection();
-				if (selection.rangeCount && !selection.isCollapsed) {
-					return true;
-				}
-
-				if (!deviceIsIOS4) {
-
-					// Weird things happen on iOS when an alert or confirm dialog is opened from a click event callback (issue #23):
-					// when the user next taps anywhere else on the page, new touchstart and touchend events are dispatched
-					// with the same identifier as the touch event that previously triggered the click that triggered the alert.
-					// Sadly, there is an issue on iOS 4 that causes some normal touch events to have the same identifier as an
-					// immediately preceeding touch event (issue #52), so this fix is unavailable on that platform.
-					// Issue 120: touch.identifier is 0 when Chrome dev tools 'Emulate touch events' is set with an iOS device UA string,
-					// which causes all touch events to be ignored. As this block only applies to iOS, and iOS identifiers are always long,
-					// random integers, it's safe to to continue if the identifier is 0 here.
-					if (touch.identifier && touch.identifier === this.lastTouchIdentifier) {
-						event.preventDefault();
-						return false;
-					}
-
-					this.lastTouchIdentifier = touch.identifier;
-
-					// If the target element is a child of a scrollable layer (using -webkit-overflow-scrolling: touch) and:
-					// 1) the user does a fling scroll on the scrollable layer
-					// 2) the user stops the fling scroll with another tap
-					// then the event.target of the last 'touchend' event will be the element that was under the user's finger
-					// when the fling scroll was started, causing FastClick to send a click event to that layer - unless a check
-					// is made to ensure that a parent layer was not scrolled before sending a synthetic click (issue #42).
-					this.updateScrollParent(targetElement);
-				}
-			}
-
-			this.trackingClick = true;
-			this.trackingClickStart = event.timeStamp;
-			this.targetElement = targetElement;
-
-			this.touchStartX = touch.pageX;
-			this.touchStartY = touch.pageY;
-
-			// Prevent phantom clicks on fast double-tap (issue #36)
-			if ((event.timeStamp - this.lastClickTime) < this.tapDelay) {
-				event.preventDefault();
-			}
-
-			return true;
-		};
-
-
-		/**
-		 * Based on a touchmove event object, check whether the touch has moved past a boundary since it started.
-		 *
-		 * @param {Event} event
-		 * @returns {boolean}
-		 */
-		FastClick.prototype.touchHasMoved = function(event) {
-			var touch = event.changedTouches[0], boundary = this.touchBoundary;
-
-			if (Math.abs(touch.pageX - this.touchStartX) > boundary || Math.abs(touch.pageY - this.touchStartY) > boundary) {
-				return true;
-			}
-
-			return false;
-		};
-
-
-		/**
-		 * Update the last position.
-		 *
-		 * @param {Event} event
-		 * @returns {boolean}
-		 */
-		FastClick.prototype.onTouchMove = function(event) {
-			if (!this.trackingClick) {
-				return true;
-			}
-
-			// If the touch has moved, cancel the click tracking
-			if (this.targetElement !== this.getTargetElementFromEventTarget(event.target) || this.touchHasMoved(event)) {
-				this.trackingClick = false;
-				this.targetElement = null;
-			}
-
-			return true;
-		};
-
-
-		/**
-		 * Attempt to find the labelled control for the given label element.
-		 *
-		 * @param {EventTarget|HTMLLabelElement} labelElement
-		 * @returns {Element|null}
-		 */
-		FastClick.prototype.findControl = function(labelElement) {
-
-			// Fast path for newer browsers supporting the HTML5 control attribute
-			if (labelElement.control !== undefined) {
-				return labelElement.control;
-			}
-
-			// All browsers under test that support touch events also support the HTML5 htmlFor attribute
-			if (labelElement.htmlFor) {
-				return document.getElementById(labelElement.htmlFor);
-			}
-
-			// If no for attribute exists, attempt to retrieve the first labellable descendant element
-			// the list of which is defined here: http://www.w3.org/TR/html5/forms.html#category-label
-			return labelElement.querySelector('button, input:not([type=hidden]), keygen, meter, output, progress, select, textarea');
-		};
-
-
-		/**
-		 * On touch end, determine whether to send a click event at once.
-		 *
-		 * @param {Event} event
-		 * @returns {boolean}
-		 */
-		FastClick.prototype.onTouchEnd = function(event) {
-			var forElement, trackingClickStart, targetTagName, scrollParent, touch, targetElement = this.targetElement;
-
-			if (!this.trackingClick) {
-				return true;
-			}
-
-			// Prevent phantom clicks on fast double-tap (issue #36)
-			if ((event.timeStamp - this.lastClickTime) < this.tapDelay) {
-				this.cancelNextClick = true;
-				return true;
-			}
-
-			if ((event.timeStamp - this.trackingClickStart) > this.tapTimeout) {
-				return true;
-			}
-
-			// Reset to prevent wrong click cancel on input (issue #156).
-			this.cancelNextClick = false;
-
-			this.lastClickTime = event.timeStamp;
-
-			trackingClickStart = this.trackingClickStart;
-			this.trackingClick = false;
-			this.trackingClickStart = 0;
-
-			// On some iOS devices, the targetElement supplied with the event is invalid if the layer
-			// is performing a transition or scroll, and has to be re-detected manually. Note that
-			// for this to function correctly, it must be called *after* the event target is checked!
-			// See issue #57; also filed as rdar://13048589 .
-			if (deviceIsIOSWithBadTarget) {
-				touch = event.changedTouches[0];
-
-				// In certain cases arguments of elementFromPoint can be negative, so prevent setting targetElement to null
-				targetElement = document.elementFromPoint(touch.pageX - window.pageXOffset, touch.pageY - window.pageYOffset) || targetElement;
-				targetElement.fastClickScrollParent = this.targetElement.fastClickScrollParent;
-			}
-
-			targetTagName = targetElement.tagName.toLowerCase();
-			if (targetTagName === 'label') {
-				forElement = this.findControl(targetElement);
-				if (forElement) {
-					this.focus(targetElement);
-					if (deviceIsAndroid) {
-						return false;
-					}
-
-					targetElement = forElement;
-				}
-			} else if (this.needsFocus(targetElement)) {
-
-				// Case 1: If the touch started a while ago (best guess is 100ms based on tests for issue #36) then focus will be triggered anyway. Return early and unset the target element reference so that the subsequent click will be allowed through.
-				// Case 2: Without this exception for input elements tapped when the document is contained in an iframe, then any inputted text won't be visible even though the value attribute is updated as the user types (issue #37).
-				if ((event.timeStamp - trackingClickStart) > 100 || (deviceIsIOS && window.top !== window && targetTagName === 'input')) {
-					this.targetElement = null;
-					return false;
-				}
-
-				this.focus(targetElement);
-				this.sendClick(targetElement, event);
-
-				// Select elements need the event to go through on iOS 4, otherwise the selector menu won't open.
-				// Also this breaks opening selects when VoiceOver is active on iOS6, iOS7 (and possibly others)
-				if (!deviceIsIOS || targetTagName !== 'select') {
-					this.targetElement = null;
-					event.preventDefault();
-				}
-
-				return false;
-			}
-
-			if (deviceIsIOS && !deviceIsIOS4) {
-
-				// Don't send a synthetic click event if the target element is contained within a parent layer that was scrolled
-				// and this tap is being used to stop the scrolling (usually initiated by a fling - issue #42).
-				scrollParent = targetElement.fastClickScrollParent;
-				if (scrollParent && scrollParent.fastClickLastScrollTop !== scrollParent.scrollTop) {
-					return true;
-				}
-			}
-
-			// Prevent the actual click from going though - unless the target node is marked as requiring
-			// real clicks or if it is in the whitelist in which case only non-programmatic clicks are permitted.
-			if (!this.needsClick(targetElement)) {
-				event.preventDefault();
-				this.sendClick(targetElement, event);
-			}
-
-			return false;
-		};
-
-
-		/**
-		 * On touch cancel, stop tracking the click.
-		 *
-		 * @returns {void}
-		 */
-		FastClick.prototype.onTouchCancel = function() {
-			this.trackingClick = false;
-			this.targetElement = null;
-		};
-
-
-		/**
-		 * Determine mouse events which should be permitted.
-		 *
-		 * @param {Event} event
-		 * @returns {boolean}
-		 */
-		FastClick.prototype.onMouse = function(event) {
-
-			// If a target element was never set (because a touch event was never fired) allow the event
-			if (!this.targetElement) {
-				return true;
-			}
-
-			if (event.forwardedTouchEvent) {
-				return true;
-			}
-
-			// Programmatically generated events targeting a specific element should be permitted
-			if (!event.cancelable) {
-				return true;
-			}
-
-			// Derive and check the target element to see whether the mouse event needs to be permitted;
-			// unless explicitly enabled, prevent non-touch click events from triggering actions,
-			// to prevent ghost/doubleclicks.
-			if (!this.needsClick(this.targetElement) || this.cancelNextClick) {
-
-				// Prevent any user-added listeners declared on FastClick element from being fired.
-				if (event.stopImmediatePropagation) {
-					event.stopImmediatePropagation();
-				} else {
-
-					// Part of the hack for browsers that don't support Event#stopImmediatePropagation (e.g. Android 2)
-					event.propagationStopped = true;
-				}
-
-				// Cancel the event
-				event.stopPropagation();
-				event.preventDefault();
-
-				return false;
-			}
-
-			// If the mouse event is permitted, return true for the action to go through.
-			return true;
-		};
-
-
-		/**
-		 * On actual clicks, determine whether this is a touch-generated click, a click action occurring
-		 * naturally after a delay after a touch (which needs to be cancelled to avoid duplication), or
-		 * an actual click which should be permitted.
-		 *
-		 * @param {Event} event
-		 * @returns {boolean}
-		 */
-		FastClick.prototype.onClick = function(event) {
-			var permitted;
-
-			// It's possible for another FastClick-like library delivered with third-party code to fire a click event before FastClick does (issue #44). In that case, set the click-tracking flag back to false and return early. This will cause onTouchEnd to return early.
-			if (this.trackingClick) {
-				this.targetElement = null;
-				this.trackingClick = false;
-				return true;
-			}
-
-			// Very odd behaviour on iOS (issue #18): if a submit element is present inside a form and the user hits enter in the iOS simulator or clicks the Go button on the pop-up OS keyboard the a kind of 'fake' click event will be triggered with the submit-type input element as the target.
-			if (event.target.type === 'submit' && event.detail === 0) {
-				return true;
-			}
-
-			permitted = this.onMouse(event);
-
-			// Only unset targetElement if the click is not permitted. This will ensure that the check for !targetElement in onMouse fails and the browser's click doesn't go through.
-			if (!permitted) {
-				this.targetElement = null;
-			}
-
-			// If clicks are permitted, return true for the action to go through.
-			return permitted;
-		};
-
-
-		/**
-		 * Remove all FastClick's event listeners.
-		 *
-		 * @returns {void}
-		 */
-		FastClick.prototype.destroy = function() {
-			var layer = this.layer;
-
-			if (deviceIsAndroid) {
-				layer.removeEventListener('mouseover', this.onMouse, true);
-				layer.removeEventListener('mousedown', this.onMouse, true);
-				layer.removeEventListener('mouseup', this.onMouse, true);
-			}
-
-			layer.removeEventListener('click', this.onClick, true);
-			layer.removeEventListener('touchstart', this.onTouchStart, false);
-			layer.removeEventListener('touchmove', this.onTouchMove, false);
-			layer.removeEventListener('touchend', this.onTouchEnd, false);
-			layer.removeEventListener('touchcancel', this.onTouchCancel, false);
-		};
-
-
-		/**
-		 * Check whether FastClick is needed.
-		 *
-		 * @param {Element} layer The layer to listen on
-		 */
-		FastClick.notNeeded = function(layer) {
-			var metaViewport;
-			var chromeVersion;
-			var blackberryVersion;
-			var firefoxVersion;
-
-			// Devices that don't support touch don't need FastClick
-			if (typeof window.ontouchstart === 'undefined') {
-				return true;
-			}
-
-			// Chrome version - zero for other browsers
-			chromeVersion = +(/Chrome\/([0-9]+)/.exec(navigator.userAgent) || [,0])[1];
-
-			if (chromeVersion) {
-
-				if (deviceIsAndroid) {
-					metaViewport = document.querySelector('meta[name=viewport]');
-
-					if (metaViewport) {
-						// Chrome on Android with user-scalable="no" doesn't need FastClick (issue #89)
-						if (metaViewport.content.indexOf('user-scalable=no') !== -1) {
-							return true;
-						}
-						// Chrome 32 and above with width=device-width or less don't need FastClick
-						if (chromeVersion > 31 && document.documentElement.scrollWidth <= window.outerWidth) {
-							return true;
-						}
-					}
-
-				// Chrome desktop doesn't need FastClick (issue #15)
-				} else {
-					return true;
-				}
-			}
-
-			if (deviceIsBlackBerry10) {
-				blackberryVersion = navigator.userAgent.match(/Version\/([0-9]*)\.([0-9]*)/);
-
-				// BlackBerry 10.3+ does not require Fastclick library.
-				// https://github.com/ftlabs/fastclick/issues/251
-				if (blackberryVersion[1] >= 10 && blackberryVersion[2] >= 3) {
-					metaViewport = document.querySelector('meta[name=viewport]');
-
-					if (metaViewport) {
-						// user-scalable=no eliminates click delay.
-						if (metaViewport.content.indexOf('user-scalable=no') !== -1) {
-							return true;
-						}
-						// width=device-width (or less than device-width) eliminates click delay.
-						if (document.documentElement.scrollWidth <= window.outerWidth) {
-							return true;
-						}
-					}
-				}
-			}
-
-			// IE10 with -ms-touch-action: none or manipulation, which disables double-tap-to-zoom (issue #97)
-			if (layer.style.msTouchAction === 'none' || layer.style.touchAction === 'manipulation') {
-				return true;
-			}
-
-			// Firefox version - zero for other browsers
-			firefoxVersion = +(/Firefox\/([0-9]+)/.exec(navigator.userAgent) || [,0])[1];
-
-			if (firefoxVersion >= 27) {
-				// Firefox 27+ does not have tap delay if the content is not zoomable - https://bugzilla.mozilla.org/show_bug.cgi?id=922896
-
-				metaViewport = document.querySelector('meta[name=viewport]');
-				if (metaViewport && (metaViewport.content.indexOf('user-scalable=no') !== -1 || document.documentElement.scrollWidth <= window.outerWidth)) {
-					return true;
-				}
-			}
-
-			// IE11: prefixed -ms-touch-action is no longer supported and it's recomended to use non-prefixed version
-			// http://msdn.microsoft.com/en-us/library/windows/apps/Hh767313.aspx
-			if (layer.style.touchAction === 'none' || layer.style.touchAction === 'manipulation') {
-				return true;
-			}
-
-			return false;
-		};
-
-
-		/**
-		 * Factory method for creating a FastClick object
-		 *
-		 * @param {Element} layer The layer to listen on
-		 * @param {Object} [options={}] The options to override the defaults
-		 */
-		FastClick.attach = function(layer, options) {
-			return new FastClick(layer, options);
-		};
-
-
-		if (true) {
-
-			// AMD. Register as an anonymous module.
-			!(__WEBPACK_AMD_DEFINE_RESULT__ = function() {
-				return FastClick;
-			}.call(exports, __webpack_require__, exports, module), __WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
-		} else if (typeof module !== 'undefined' && module.exports) {
-			module.exports = FastClick.attach;
-			module.exports.FastClick = FastClick;
-		} else {
-			window.FastClick = FastClick;
-		}
-	}());
-
-
-/***/ }),
-/* 2 */
-/***/ (function(module, exports, __webpack_require__) {
-
-	'use strict';
-
 	Object.defineProperty(exports, "__esModule", {
 	    value: true
 	});
 
-	var _dialog = __webpack_require__(3);
+	var _dialog = __webpack_require__(1);
 
 	var _dialog2 = _interopRequireDefault(_dialog);
 
-	var _alert = __webpack_require__(9);
+	var _alert = __webpack_require__(7);
 
 	var _alert2 = _interopRequireDefault(_alert);
 
-	var _confirm = __webpack_require__(10);
+	var _confirm = __webpack_require__(8);
 
 	var _confirm2 = _interopRequireDefault(_confirm);
 
-	var _toast = __webpack_require__(11);
+	var _toast = __webpack_require__(9);
 
 	var _toast2 = _interopRequireDefault(_toast);
 
-	var _loading = __webpack_require__(13);
+	var _loading = __webpack_require__(11);
 
 	var _loading2 = _interopRequireDefault(_loading);
 
-	var _actionSheet = __webpack_require__(15);
+	var _actionSheet = __webpack_require__(13);
 
 	var _actionSheet2 = _interopRequireDefault(_actionSheet);
 
-	var _topTips = __webpack_require__(17);
+	var _topTips = __webpack_require__(15);
 
 	var _topTips2 = _interopRequireDefault(_topTips);
 
-	var _searchBar = __webpack_require__(19);
+	var _searchBar = __webpack_require__(17);
 
 	var _searchBar2 = _interopRequireDefault(_searchBar);
 
-	var _tab = __webpack_require__(20);
+	var _tab = __webpack_require__(18);
 
 	var _tab2 = _interopRequireDefault(_tab);
 
-	var _form = __webpack_require__(21);
+	var _form = __webpack_require__(19);
 
 	var _form2 = _interopRequireDefault(_form);
 
-	var _uploader = __webpack_require__(22);
+	var _uploader = __webpack_require__(20);
 
 	var _uploader2 = _interopRequireDefault(_uploader);
 
-	var _picker = __webpack_require__(26);
+	var _picker = __webpack_require__(24);
 
-	var _gallery = __webpack_require__(32);
+	var _gallery = __webpack_require__(30);
 
 	var _gallery2 = _interopRequireDefault(_gallery);
 
-	var _slider = __webpack_require__(34);
+	var _slider = __webpack_require__(32);
 
 	var _slider2 = _interopRequireDefault(_slider);
 
-	var _offcanvas = __webpack_require__(35);
+	var _offcanvas = __webpack_require__(33);
 
 	var _offcanvas2 = _interopRequireDefault(_offcanvas);
 
@@ -1494,7 +161,7 @@
 	module.exports = exports['default'];
 
 /***/ }),
-/* 3 */
+/* 1 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -1503,11 +170,11 @@
 	    value: true
 	});
 
-	var _util = __webpack_require__(4);
+	var _util = __webpack_require__(2);
 
 	var _util2 = _interopRequireDefault(_util);
 
-	var _dialog = __webpack_require__(8);
+	var _dialog = __webpack_require__(6);
 
 	var _dialog2 = _interopRequireDefault(_dialog);
 
@@ -1624,7 +291,7 @@
 	module.exports = exports['default'];
 
 /***/ }),
-/* 4 */
+/* 2 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -1649,13 +316,13 @@
 	                                                                                                                                                                                                                                                                              * limitations under the License.
 	                                                                                                                                                                                                                                                                              */
 
-	__webpack_require__(5);
+	__webpack_require__(3);
 
-	var _objectAssign = __webpack_require__(6);
+	var _objectAssign = __webpack_require__(4);
 
 	var _objectAssign2 = _interopRequireDefault(_objectAssign);
 
-	var _balajs = __webpack_require__(7);
+	var _balajs = __webpack_require__(5);
 
 	var _balajs2 = _interopRequireDefault(_balajs);
 
@@ -1983,7 +650,7 @@
 	module.exports = exports['default'];
 
 /***/ }),
-/* 5 */
+/* 3 */
 /***/ (function(module, exports) {
 
 	// element-closest | CC0-1.0 | github.com/jonathantneal/closest
@@ -2022,7 +689,7 @@
 
 
 /***/ }),
-/* 6 */
+/* 4 */
 /***/ (function(module, exports) {
 
 	/*
@@ -2118,7 +785,7 @@
 
 
 /***/ }),
-/* 7 */
+/* 5 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;(function(root, $) {
@@ -2174,13 +841,13 @@
 
 
 /***/ }),
-/* 8 */
+/* 6 */
 /***/ (function(module, exports) {
 
 	module.exports = "<div class=\"<%=className%>\"> <div class=weui-mask></div> <div class=\"weui-dialog <% if(isAndroid){ %> weui-skin_android <% } %>\"> <% if(title){ %> <div class=weui-dialog__hd><strong class=weui-dialog__title><%=title%></strong></div> <% } %> <div class=weui-dialog__bd><%=content%></div> <div class=weui-dialog__ft> <% for(var i = 0; i < buttons.length; i++){ %> <a href=javascript:; class=\"weui-dialog__btn weui-dialog__btn_<%=buttons[i]['type']%>\"><%=buttons[i]['label']%></a> <% } %> </div> </div> </div> ";
 
 /***/ }),
-/* 9 */
+/* 7 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -2205,11 +872,11 @@
 	                                                                                                                                                                                                                                                                              * limitations under the License.
 	                                                                                                                                                                                                                                                                              */
 
-	var _util = __webpack_require__(4);
+	var _util = __webpack_require__(2);
 
 	var _util2 = _interopRequireDefault(_util);
 
-	var _dialog = __webpack_require__(3);
+	var _dialog = __webpack_require__(1);
 
 	var _dialog2 = _interopRequireDefault(_dialog);
 
@@ -2276,7 +943,7 @@
 	module.exports = exports['default'];
 
 /***/ }),
-/* 10 */
+/* 8 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -2301,11 +968,11 @@
 	                                                                                                                                                                                                                                                                              * limitations under the License.
 	                                                                                                                                                                                                                                                                              */
 
-	var _util = __webpack_require__(4);
+	var _util = __webpack_require__(2);
 
 	var _util2 = _interopRequireDefault(_util);
 
-	var _dialog = __webpack_require__(3);
+	var _dialog = __webpack_require__(1);
 
 	var _dialog2 = _interopRequireDefault(_dialog);
 
@@ -2377,7 +1044,7 @@
 	module.exports = exports['default'];
 
 /***/ }),
-/* 11 */
+/* 9 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -2386,11 +1053,11 @@
 	    value: true
 	});
 
-	var _util = __webpack_require__(4);
+	var _util = __webpack_require__(2);
 
 	var _util2 = _interopRequireDefault(_util);
 
-	var _toast = __webpack_require__(12);
+	var _toast = __webpack_require__(10);
 
 	var _toast2 = _interopRequireDefault(_toast);
 
@@ -2478,13 +1145,13 @@
 	module.exports = exports['default'];
 
 /***/ }),
-/* 12 */
+/* 10 */
 /***/ (function(module, exports) {
 
 	module.exports = "<div class=\"<%= className %>\"> <div class=weui-mask_transparent></div> <div class=weui-toast> <i class=\"weui-icon_toast weui-icon-success-no-circle\"></i> <p class=weui-toast__content><%=content%></p> </div> </div> ";
 
 /***/ }),
-/* 13 */
+/* 11 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -2493,11 +1160,11 @@
 	    value: true
 	});
 
-	var _util = __webpack_require__(4);
+	var _util = __webpack_require__(2);
 
 	var _util2 = _interopRequireDefault(_util);
 
-	var _loading = __webpack_require__(14);
+	var _loading = __webpack_require__(12);
 
 	var _loading2 = _interopRequireDefault(_loading);
 
@@ -2578,13 +1245,13 @@
 	module.exports = exports['default'];
 
 /***/ }),
-/* 14 */
+/* 12 */
 /***/ (function(module, exports) {
 
 	module.exports = "<div class=\"weui-loading_toast <%= className %>\"> <div class=weui-mask_transparent></div> <div class=weui-toast> <i class=\"weui-loading weui-icon_toast\"></i> <p class=weui-toast__content><%=content%></p> </div> </div> ";
 
 /***/ }),
-/* 15 */
+/* 13 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -2593,11 +1260,11 @@
 	    value: true
 	});
 
-	var _util = __webpack_require__(4);
+	var _util = __webpack_require__(2);
 
 	var _util2 = _interopRequireDefault(_util);
 
-	var _actionSheet = __webpack_require__(16);
+	var _actionSheet = __webpack_require__(14);
 
 	var _actionSheet2 = _interopRequireDefault(_actionSheet);
 
@@ -2729,13 +1396,13 @@
 	module.exports = exports['default'];
 
 /***/ }),
-/* 16 */
+/* 14 */
 /***/ (function(module, exports) {
 
 	module.exports = "<div class=\"<% if(isAndroid){ %>weui-skin_android <% } %><%= className %>\"> <div class=weui-mask></div> <div class=weui-actionsheet> <div class=weui-actionsheet__menu> <% for(var i = 0; i < menus.length; i++){ %> <div class=weui-actionsheet__cell><%= menus[i].label %></div> <% } %> </div> <div class=weui-actionsheet__action> <% for(var j = 0; j < actions.length; j++){ %> <div class=weui-actionsheet__cell><%= actions[j].label %></div> <% } %> </div> </div> </div> ";
 
 /***/ }),
-/* 17 */
+/* 15 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -2744,11 +1411,11 @@
 	    value: true
 	});
 
-	var _util = __webpack_require__(4);
+	var _util = __webpack_require__(2);
 
 	var _util2 = _interopRequireDefault(_util);
 
-	var _topTips = __webpack_require__(18);
+	var _topTips = __webpack_require__(16);
 
 	var _topTips2 = _interopRequireDefault(_topTips);
 
@@ -2849,13 +1516,13 @@
 	module.exports = exports['default'];
 
 /***/ }),
-/* 18 */
+/* 16 */
 /***/ (function(module, exports) {
 
 	module.exports = "<div class=\"weui-toptips weui-toptips_warn <%= className %>\" style=display:block><%= content %></div> ";
 
 /***/ }),
-/* 19 */
+/* 17 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -2864,7 +1531,7 @@
 	    value: true
 	});
 
-	var _util = __webpack_require__(4);
+	var _util = __webpack_require__(2);
 
 	var _util2 = _interopRequireDefault(_util);
 
@@ -2951,7 +1618,7 @@
 	module.exports = exports['default'];
 
 /***/ }),
-/* 20 */
+/* 18 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -2960,7 +1627,7 @@
 	    value: true
 	});
 
-	var _util = __webpack_require__(4);
+	var _util = __webpack_require__(2);
 
 	var _util2 = _interopRequireDefault(_util);
 
@@ -3054,7 +1721,7 @@
 	module.exports = exports['default'];
 
 /***/ }),
-/* 21 */
+/* 19 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -3063,11 +1730,11 @@
 	    value: true
 	});
 
-	var _util = __webpack_require__(4);
+	var _util = __webpack_require__(2);
 
 	var _util2 = _interopRequireDefault(_util);
 
-	var _topTips = __webpack_require__(17);
+	var _topTips = __webpack_require__(15);
 
 	var _topTips2 = _interopRequireDefault(_topTips);
 
@@ -3337,7 +2004,7 @@
 	module.exports = exports['default'];
 
 /***/ }),
-/* 22 */
+/* 20 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -3346,17 +2013,17 @@
 	    value: true
 	});
 
-	var _util = __webpack_require__(4);
+	var _util = __webpack_require__(2);
 
 	var _util2 = _interopRequireDefault(_util);
 
-	var _item = __webpack_require__(23);
+	var _item = __webpack_require__(21);
 
 	var _item2 = _interopRequireDefault(_item);
 
-	var _image = __webpack_require__(24);
+	var _image = __webpack_require__(22);
 
-	var _upload = __webpack_require__(25);
+	var _upload = __webpack_require__(23);
 
 	var _upload2 = _interopRequireDefault(_upload);
 
@@ -3658,13 +2325,13 @@
 	module.exports = exports['default'];
 
 /***/ }),
-/* 23 */
+/* 21 */
 /***/ (function(module, exports) {
 
 	module.exports = "<li class=\"weui-uploader__file weui-uploader__file_status\" data-id=\"<%= id %>\"> <div class=weui-uploader__file-content> <i class=weui-loading style=width:30px;height:30px></i> </div> </li> ";
 
 /***/ }),
-/* 24 */
+/* 22 */
 /***/ (function(module, exports) {
 
 	'use strict';
@@ -3896,7 +2563,7 @@
 	module.exports = exports['default'];
 
 /***/ }),
-/* 25 */
+/* 23 */
 /***/ (function(module, exports) {
 
 	'use strict';
@@ -4001,7 +2668,7 @@
 	module.exports = exports['default'];
 
 /***/ }),
-/* 26 */
+/* 24 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -4026,25 +2693,25 @@
 	                                                                                                                                                                                                                                                                              * limitations under the License.
 	                                                                                                                                                                                                                                                                              */
 
-	var _util = __webpack_require__(4);
+	var _util = __webpack_require__(2);
 
 	var _util2 = _interopRequireDefault(_util);
 
-	var _cron = __webpack_require__(27);
+	var _cron = __webpack_require__(25);
 
 	var _cron2 = _interopRequireDefault(_cron);
 
-	__webpack_require__(28);
+	__webpack_require__(26);
 
-	var _util3 = __webpack_require__(29);
+	var _util3 = __webpack_require__(27);
 
 	var util = _interopRequireWildcard(_util3);
 
-	var _picker = __webpack_require__(30);
+	var _picker = __webpack_require__(28);
 
 	var _picker2 = _interopRequireDefault(_picker);
 
-	var _group = __webpack_require__(31);
+	var _group = __webpack_require__(29);
 
 	var _group2 = _interopRequireDefault(_group);
 
@@ -4520,7 +3187,7 @@
 	module.exports = exports['default'];
 
 /***/ }),
-/* 27 */
+/* 25 */
 /***/ (function(module, exports) {
 
 	'use strict';
@@ -4729,7 +3396,7 @@
 	module.exports = exports['default'];
 
 /***/ }),
-/* 28 */
+/* 26 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -4750,7 +3417,7 @@
 	                                                                                                                                                                                                                                                                              * limitations under the License.
 	                                                                                                                                                                                                                                                                              */
 
-	var _util = __webpack_require__(4);
+	var _util = __webpack_require__(2);
 
 	var _util2 = _interopRequireDefault(_util);
 
@@ -4993,7 +3660,7 @@
 	};
 
 /***/ }),
-/* 29 */
+/* 27 */
 /***/ (function(module, exports) {
 
 	"use strict";
@@ -5026,19 +3693,19 @@
 	};
 
 /***/ }),
-/* 30 */
+/* 28 */
 /***/ (function(module, exports) {
 
 	module.exports = "<div class=\"<%= className %>\"> <div class=weui-mask></div> <div class=weui-picker> <div class=weui-picker__hd> <a href=javascript:; data-action=cancel class=weui-picker__action>取消</a> <a href=javascript:; data-action=select class=weui-picker__action id=weui-picker-confirm>确定</a> </div> <div class=weui-picker__bd></div> </div> </div> ";
 
 /***/ }),
-/* 31 */
+/* 29 */
 /***/ (function(module, exports) {
 
 	module.exports = "<div class=weui-picker__group> <div class=weui-picker__mask></div> <div class=weui-picker__indicator></div> <div class=weui-picker__content></div> </div>";
 
 /***/ }),
-/* 32 */
+/* 30 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -5047,11 +3714,11 @@
 	    value: true
 	});
 
-	var _util = __webpack_require__(4);
+	var _util = __webpack_require__(2);
 
 	var _util2 = _interopRequireDefault(_util);
 
-	var _gallery = __webpack_require__(33);
+	var _gallery = __webpack_require__(31);
 
 	var _gallery2 = _interopRequireDefault(_gallery);
 
@@ -5138,13 +3805,13 @@
 	module.exports = exports['default'];
 
 /***/ }),
-/* 33 */
+/* 31 */
 /***/ (function(module, exports) {
 
 	module.exports = "<div class=\"weui-gallery <%= className %>\"> <span class=weui-gallery__img style=\"background-image:url(<%= url %>)\"></span> <div class=weui-gallery__opr> <a href=javascript: class=weui-gallery__del> <i class=\"weui-icon-delete weui-icon_gallery-delete\"></i> </a> </div> </div> ";
 
 /***/ }),
-/* 34 */
+/* 32 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -5153,7 +3820,7 @@
 	    value: true
 	});
 
-	var _util = __webpack_require__(4);
+	var _util = __webpack_require__(2);
 
 	var _util2 = _interopRequireDefault(_util);
 
@@ -5297,7 +3964,7 @@
 	module.exports = exports['default'];
 
 /***/ }),
-/* 35 */
+/* 33 */
 /***/ (function(module, exports) {
 
 	'use strict';
@@ -5320,4 +3987,6 @@
 	module.exports = exports['default'];
 
 /***/ })
-/******/ ]);
+/******/ ])
+});
+;
